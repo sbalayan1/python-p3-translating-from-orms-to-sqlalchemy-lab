@@ -37,10 +37,23 @@ def find_by_id(session, id):
 
 def find_by_name_and_breed(session, name, breed):
     pass
-    return session.query(Dog).filter(
+    query = session.query(Dog).filter(
         Dog.name == name,
         Dog.breed == breed
-    )
+    ).first()
+
+    return query
 
 def update_breed(session, dog, breed):
     pass
+    # query = session.query(Dog).filter(
+    #     Dog.name == dog.name, 
+    #     Dog.breed == dog.breed
+    # ).first()
+
+    # query.breed = breed
+    # session.commit()
+
+    #note we don't need to query the session because the dog parameter is the dog instance saved in the session
+    dog.breed = breed
+    session.commit()
